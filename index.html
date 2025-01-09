@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <style>
+        body {
+            margin: 2;
+            padding: 2;
+            font-family: Arial, sans-serif;
+            background: #ccc0c0;
+            position: relative;
+            overflow: hidden;
+        }
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            filter: brightness(0.2); /* Adjust brightness for low contrast */
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(222, 208, 208, 0.5); /* Slightly darker background for readability */
+        }
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            background: rgba(235, 235, 235, 0.2); /* Semi-transparent background */
+            padding: 5px 0;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted>
+        <source src="index.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <header>
+        <h1>Live Stock and Crypto Prices</h1>
+    </header>
+    <div class="marquee">
+        <div class="marquee-content">
+            <!-- TradingView Widget for Stocks -->
+            <div class="tradingview-widget-container" style="display:inline-block;">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                {
+                    "symbols": [
+                        {"description": "", "proName": "NASDAQ:TSLA"},
+                        {"description": "", "proName": "NASDAQ:AAPL"},
+                        {"description": "", "proName": "NASDAQ:GOOGL"},
+                        {"description": "", "proName": "NASDAQ:AMZN"}
+                    ],
+                    "showSymbolLogo": true,
+                    "colorTheme": "light",
+                    "isTransparent": false,
+                    "displayMode": "adaptive",
+                    "locale": "en"
+                }
+                </script>
+            </div>
+            <!-- TradingView Widget for Crypto -->
+            <div class="tradingview-widget-container" style="display:inline-block;">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                {
+                    "symbols": [
+                        {"description": "Bitcoin", "proName": "BITFINEX:BTCUSD"},
+                        {"description": "Ethereum", "proName": "BITFINEX:ETHUSD"},
+                        {"description": "Litecoin", "proName": "BITFINEX:LTCUSD"},
+                        {"description": "Ripple", "proName": "BITFINEX:XRPUSD"}
+                    ],
+                    "showSymbolLogo": true,
+                    "colorTheme": "light",
+                    "isTransparent": false,
+                    "displayMode": "adaptive",
+                    "locale": "en"
+                }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
